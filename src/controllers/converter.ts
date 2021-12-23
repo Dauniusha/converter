@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { APIResponse } from "../models/API-response";
 import ConverterError from '../models/converter-error';
@@ -41,26 +41,26 @@ class Converter {
 
     async convert(changedCurrency: RequestCurrency): Promise<ResponseCurrency[]> {
         try {
-        if (this.currentExchangeDate!.toISOString().slice(0, 10) < new Date().toISOString().slice(0, 10)) {
-            await this.setCurrentExchangeRate();
-        };
-        
-        const changedCurrencyRate = this.currentExchangeRate.filter(
-                (rate: APIResponse) => rate.Cur_Abbreviation === changedCurrency.abbreviation
-            )[0];
+            if (this.currentExchangeDate!.toISOString().slice(0, 10) < new Date().toISOString().slice(0, 10)) {
+                await this.setCurrentExchangeRate();
+            };
+            
+            const changedCurrencyRate = this.currentExchangeRate.filter(
+                    (rate: APIResponse) => rate.Cur_Abbreviation === changedCurrency.abbreviation
+                )[0];
 
-        const referenсeAmount = changedCurrency.amount * changedCurrencyRate.Cur_OfficialRate;
-        
-        return this.currentExchangeRate.reduce(
-            (acc: ResponseCurrency[], currency: APIResponse) => {
-                acc.push({
-                    abbreviation: currency.Cur_Abbreviation,
-                    amount: referenсeAmount / currency.Cur_OfficialRate * currency.Cur_Scale,
-                    name: currency.Cur_Name,
-                });
+            const referenсeAmount = changedCurrency.amount * changedCurrencyRate.Cur_OfficialRate;
+            
+            return this.currentExchangeRate.reduce(
+                (acc: ResponseCurrency[], currency: APIResponse) => {
+                    acc.push({
+                        abbreviation: currency.Cur_Abbreviation,
+                        amount: referenсeAmount / currency.Cur_OfficialRate * currency.Cur_Scale,
+                        name: currency.Cur_Name,
+                    });
 
-                return acc;
-            }, []);
+                    return acc;
+                }, []);
         } catch (err) {
             throw this.errorHandler(changedCurrency, err as Error);
         }
