@@ -1,0 +1,58 @@
+$textColor: #111;
+$mainBackground: #ffedd7;
+$secondBackground: #fffff6;
+
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.currency {
+    width: 100%;
+    height: 9vh;
+    box-sizing: border-box;
+    padding: 1vh 1.5vh;
+    border-radius: 1vh;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    color: $textColor;
+    background-color: $mainBackground;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+
+    margin: 1vh 0;
+    
+    &__main-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 70%;
+
+        .currency__abbrevation {
+            font-size: 3vh;
+            margin-right: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .currency__input {
+            width: 80%;
+            height: 100%;
+            outline: none;
+            font-size: 2.5vh;
+            padding: 1px 7px;
+            color: $textColor;
+            background-color: $secondBackground;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &__full-name {
+        margin-top: 5px;
+        font-size: 12px;
+        font-size: 1.5vh;
+        color: $textColor;
+    }
+}

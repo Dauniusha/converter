@@ -1,0 +1,24 @@
+<div class="converter">
+    <h2 class="converter__title">Converter</h2>
+    <div class="converter__currency-container">
+        <app-currency class="converter__currency"></app-currency>
+        <app-currency class="converter__currency"></app-currency>
+        <app-currency class="converter__currency"></app-currency>
+        <app-currency class="converter__currency"></app-currency>
+
+        <button class="converter__add" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon class="add__icon">add</mat-icon>
+            <span class="add__description">Add currency</span>
+        </button>
+        <mat-menu class="add__dropdown" #menu="matMenu">
+            <button class="dropdown__currency" mat-menu-item>
+                <span class="dropdown-currency__abbrevation">USD</span>
+                Американский доллар
+            </button>
+            <button class="dropdown__currency" mat-menu-item>
+                <span class="dropdown-currency__abbrevation">USD</span>
+                Американский доллар
+            </button>
+        </mat-menu>
+    </div>
+</div>
