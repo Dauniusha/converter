@@ -4,9 +4,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import currenciesActionsMap from 'src/app/redux/actions/currency.actions';
 import { AppState } from 'src/app/redux/state.models';
+import STRING_CONSTANTS from 'src/app/settings/constants/string.constants';
 import { APIRequestCurrency, APIResponceCurrency } from '../models/api-currency';
-
-const API_PATH = 'http://localhost:3000';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +18,7 @@ export class HttpService {
     ) { };
 
     public update(updatedCurrency: APIRequestCurrency) {
-        this.httpClient.post<APIResponceCurrency[]>(API_PATH, updatedCurrency)
+        this.httpClient.post<APIResponceCurrency[]>(STRING_CONSTANTS.apiPath, updatedCurrency)
         .subscribe((data: APIResponceCurrency[]) => this.store.dispatch(currenciesActionsMap.update({ currencies: data })));
     };
 };

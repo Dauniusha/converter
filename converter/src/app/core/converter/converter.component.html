@@ -3,10 +3,10 @@
     <div class="converter__currency-container">
 
         <app-currency 
-            *ngFor="let abbrevation of abbrevations"
-            [abbrevation]="abbrevation"
-            [value]="(currencies | async)?.[abbrevation]?.amount || 0"
-            [fullName]="(currencies | async)?.[abbrevation]?.fullName || ''"
+            *ngFor="let abbreviation of abbreviations"
+            [abbreviation]="abbreviation"
+            [value]="(currencies | async)?.[abbreviation]?.amount || 0"
+            [name]="(currencies | async)?.[abbreviation]?.name || ''"
             class="converter__currency">
         </app-currency>
 
@@ -15,13 +15,14 @@
             <span class="add__description">Add currency</span>
         </button>
         <mat-menu class="add__dropdown" #menu="matMenu">
-            <button class="dropdown__currency" mat-menu-item>
-                <span class="dropdown-currency__abbrevation">USD</span>
-                Американский доллар
-            </button>
-            <button class="dropdown__currency" mat-menu-item>
-                <span class="dropdown-currency__abbrevation">USD</span>
-                Американский доллар
+            <button
+                class="dropdown__currency"
+                mat-menu-item
+                *ngFor="let additional of additionalCurrencies"
+                (click)="addCurrency(additional)"
+            >
+                <span class="dropdown-currency__abbreviation">{{additional}}</span>
+                {{(currencies | async)?.[additional]?.name}}
             </button>
         </mat-menu>
     </div>

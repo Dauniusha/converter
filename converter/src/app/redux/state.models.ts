@@ -6,7 +6,7 @@ export interface CurrenciesState {
 
 interface CurrencyInfo {
     amount: number;
-    fullName: string;
+    name: string;
 };
 
 export interface AppState {

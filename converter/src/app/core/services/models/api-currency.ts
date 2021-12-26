@@ -1,8 +1,8 @@
 export interface APIRequestCurrency {
-    abbrevation: string;
+    abbreviation: string;
     amount: number;
 };
 
 export interface APIResponceCurrency extends APIRequestCurrency {
-    fullName: string;
+    name: string;
 };

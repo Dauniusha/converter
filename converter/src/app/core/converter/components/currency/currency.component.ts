@@ -8,11 +8,11 @@ import { HttpService } from 'src/app/core/services/http/http.service';
     styleUrls: ['./currency.component.scss']
 })
 export class CurrencyComponent implements OnInit {
-    @Input() abbrevation: string = '';
+    @Input() abbreviation: string = '';
 
     @Input() value: number = 0;
 
-    @Input() fullName: string = '';
+    @Input() name: string = '';
 
     public filterSubject: Subject<Event> = new Subject();
 
@@ -26,6 +26,6 @@ export class CurrencyComponent implements OnInit {
             debounceTime(500),
             distinctUntilChanged()
         )
-        .subscribe((amount: number) => this.httpService.update({ abbrevation: this.abbrevation, amount }))
+        .subscribe((amount: number) => this.httpService.update({ abbreviation: this.abbreviation, amount }))
     };
 };

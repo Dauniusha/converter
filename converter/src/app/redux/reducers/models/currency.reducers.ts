@@ -9,9 +9,9 @@ const currenciesReducer = createReducer(
         return currencies.reduce((acc, apiCurrency) => {
             return {
                 ...acc,
-                [apiCurrency.abbrevation]: {
+                [apiCurrency.abbreviation]: {
                     amount: apiCurrency.amount,
-                    fullName: apiCurrency.fullName,
+                    name: apiCurrency.name,
                 },
             }
         }, {});

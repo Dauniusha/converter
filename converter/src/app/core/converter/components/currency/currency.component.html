@@ -1,7 +1,7 @@
 <div class="currency">
     <div class="currency__main-container">
-        <h3 class="currency__abbrevation">{{abbrevation}}</h3>
-        <input class="currency__input" placeholder="amount" value="value" (input)="filterSubject.next($event)">
+        <h3 class="currency__abbreviation">{{abbreviation}}</h3>
+        <input class="currency__input" placeholder="amount" value="{{value | number: '1.0-4'}}"  (input)="filterSubject.next($event)">
     </div>
-    <p class="currency__full-name">{{fullName}}</p>
+    <p class="currency__full-name">{{name}}</p>
 </div>
