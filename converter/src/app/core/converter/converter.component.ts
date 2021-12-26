@@ -23,7 +23,7 @@ export class ConverterComponent implements OnInit {
     ) { };
 
     public ngOnInit(): void {
-        this.httpService.update({ abbreviation: 'BYN', amount: 1 });
+        this.httpService.update(STRING_CONSTANTS.initialAmout);
 
         this.currencies.subscribe((data) => {
             const allAbbreviations = Object.keys(data);

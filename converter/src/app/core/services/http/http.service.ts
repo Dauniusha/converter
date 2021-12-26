@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { catchError } from 'rxjs';
 import currenciesActionsMap from 'src/app/redux/actions/currency.actions';
 import { AppState } from 'src/app/redux/state.models';
 import STRING_CONSTANTS from 'src/app/settings/constants/string.constants';
