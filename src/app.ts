@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: __dirname + '/.env' });
+
 import express, { json } from 'express';
 import router from './routes/api.routes';
 import cors from 'cors';

@@ -1,11 +1,8 @@
 import axios, { AxiosError } from 'axios';
-
-import { APIResponse } from "../models/API-response";
+import APIResponse from "../models/API-response";
 import ConverterError from '../models/converter-error';
 import { RequestCurrency, ResponseCurrency } from '../models/currency';
-
-const API_URL = 'https://www.nbrb.by/API/ExRates/Rates?Periodicity=0';
-const REFERENCE_ABBREVIATION = 'BYN';
+import REFERENCE_CURRENCY from '../settings/referenceCurrency';
 
 class Converter {
     private currentExchangeRate: APIResponse[] = [];
@@ -18,8 +15,9 @@ class Converter {
     };
 
     private async setCurrentExchangeRate() {
+        const apiUrl = process.env.API_URL || '';
         this.currentExchangeRate = await axios.get(
-                API_URL,
+                apiUrl,
                 { timeout: 10000 }
             )
             .then(res => res.data)
@@ -27,14 +25,7 @@ class Converter {
                 throw { message: err.message, code: 500 };
             });
 
-        this.currentExchangeRate.push({ // TODO: Вынести отдельно
-            Cur_ID: 0,
-            Date: new Date().toISOString(),
-            Cur_Abbreviation: 'BYN',
-            Cur_Scale: 1,
-            Cur_Name: 'Белорусский рубль',
-            Cur_OfficialRate: 1,
-        });
+        this.currentExchangeRate.push(REFERENCE_CURRENCY);
 
         this.currentExchangeDate = new Date(this.currentExchangeRate[0]?.Date || Date.now());
     };
@@ -49,7 +40,7 @@ class Converter {
                     (rate: APIResponse) => rate.Cur_Abbreviation === changedCurrency.abbreviation
                 )[0];
 
-            const referenсeAmount = changedCurrency.amount * changedCurrencyRate.Cur_OfficialRate;
+            const referenсeAmount = changedCurrency.amount * changedCurrencyRate.Cur_OfficialRate / changedCurrencyRate.Cur_Scale;
             
             return this.currentExchangeRate.reduce(
                 (acc: ResponseCurrency[], currency: APIResponse) => {

@@ -1,4 +1,4 @@
-export interface APIResponse {
+export default interface APIResponse {
     Cur_ID: number;
     Date: string;
     Cur_Abbreviation: string;
