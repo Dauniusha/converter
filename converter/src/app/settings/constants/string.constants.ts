@@ -1,5 +1,5 @@
 const STRING_CONSTANTS = {
-    apiPath: 'http://localhost:3000/converter/',
+    apiPath: 'https://converter-techsoft.herokuapp.com/converter/',
     initialCurrency: [ 'USD', 'EUR', 'RUB', 'BYN' ],
     initialAmout: { abbreviation: 'USD', amount: 1 },
 };
