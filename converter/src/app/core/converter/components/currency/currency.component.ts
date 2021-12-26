@@ -1,20 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
+import { HttpService } from 'src/app/core/services/http/http.service';
 
 @Component({
-  selector: 'app-currency',
-  templateUrl: './currency.component.html',
-  styleUrls: ['./currency.component.scss']
+    selector: 'app-currency',
+    templateUrl: './currency.component.html',
+    styleUrls: ['./currency.component.scss']
 })
 export class CurrencyComponent implements OnInit {
-  public abbrevation: string = '';
+    @Input() abbrevation: string = '';
 
-  public value: number = 0;
+    @Input() value: number = 0;
 
-  public fullName: string = '';
+    @Input() fullName: string = '';
 
-  constructor() { }
+    public filterSubject: Subject<Event> = new Subject();
 
-  ngOnInit(): void {
-  }
+    constructor(
+        private httpService: HttpService,
+    ) { };
 
-}
+    ngOnInit(): void {
+        this.filterSubject.pipe(
+            map((event) => Number((<HTMLInputElement> event.target).value)),
+            debounceTime(500),
+            distinctUntilChanged()
+        )
+        .subscribe((amount: number) => this.httpService.update({ abbrevation: this.abbrevation, amount }))
+    };
+};

@@ -1,7 +1,7 @@
 <div class="currency">
     <div class="currency__main-container">
-        <h3 class="currency__abbrevation">USD</h3>
-        <input class="currency__input" placeholder="amount" value="0">
+        <h3 class="currency__abbrevation">{{abbrevation}}</h3>
+        <input class="currency__input" placeholder="amount" value="value" (input)="filterSubject.next($event)">
     </div>
-    <p class="currency__full-name">Американский доллар</p>
+    <p class="currency__full-name">{{fullName}}</p>
 </div>

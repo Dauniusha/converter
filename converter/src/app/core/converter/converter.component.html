@@ -1,10 +1,14 @@
 <div class="converter">
     <h2 class="converter__title">Converter</h2>
     <div class="converter__currency-container">
-        <app-currency class="converter__currency"></app-currency>
-        <app-currency class="converter__currency"></app-currency>
-        <app-currency class="converter__currency"></app-currency>
-        <app-currency class="converter__currency"></app-currency>
+
+        <app-currency 
+            *ngFor="let abbrevation of abbrevations"
+            [abbrevation]="abbrevation"
+            [value]="(currencies | async)?.[abbrevation]?.amount || 0"
+            [fullName]="(currencies | async)?.[abbrevation]?.fullName || ''"
+            class="converter__currency">
+        </app-currency>
 
         <button class="converter__add" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon class="add__icon">add</mat-icon>
