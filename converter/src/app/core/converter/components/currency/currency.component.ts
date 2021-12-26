@@ -22,8 +22,11 @@ export class CurrencyComponent implements OnInit {
 
     ngOnInit(): void {
         this.filterSubject.pipe(
-            map((event) => Number((<HTMLInputElement> event.target).value)),
-            debounceTime(500),
+            map((event) => {
+                this.value = Number((<HTMLInputElement> event.target).value.replace(/\s/g, ''));
+                return this.value;
+            }),
+            debounceTime(100),
             distinctUntilChanged()
         )
         .subscribe((amount: number) => this.httpService.update({ abbreviation: this.abbreviation, amount }))

@@ -4,6 +4,7 @@ import { CurrencyComponent } from './converter/components/currency/currency.comp
 import { ConverterComponent } from './converter/converter.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
   
   imports: [
     CommonModule,
+    FormsModule,
     
     MatMenuModule,
     MatIconModule
