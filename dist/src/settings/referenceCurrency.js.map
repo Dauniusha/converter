@@ -1,0 +1,1 @@
+{"version":3,"file":"referenceCurrency.js","sourceRoot":"","sources":["../../../src/settings/referenceCurrency.ts"],"names":[],"mappings":";;AAEA,IAAM,kBAAkB,GAAgB;IACpC,MAAM,EAAE,CAAC;IACT,IAAI,EAAE,IAAI,IAAI,EAAE,CAAC,WAAW,EAAE;IAC9B,gBAAgB,EAAE,KAAK;IACvB,SAAS,EAAE,CAAC;IACZ,QAAQ,EAAE,mBAAmB;IAC7B,gBAAgB,EAAE,CAAC;CACtB,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}
