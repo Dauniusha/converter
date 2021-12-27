@@ -23,7 +23,7 @@ export class CurrencyComponent implements OnInit {
     ngOnInit(): void {
         this.filterSubject.pipe(
             map((event) => {
-                this.value = Number((<HTMLInputElement> event.target).value.replace(/\s/g, ''));
+                this.value = Number((<HTMLInputElement> event.target).value.replace(/\s/g, '').replace(/,/g, '.'));
                 return this.value;
             }),
             debounceTime(100),
