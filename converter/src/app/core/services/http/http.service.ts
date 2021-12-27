@@ -20,6 +20,9 @@ export class HttpService {
 
     public update(updatedCurrency: APIRequestCurrency) {
         this.httpClient.post<APIResponceCurrency[]>(STRING_CONSTANTS.apiPath, updatedCurrency)
-        .subscribe((data: APIResponceCurrency[]) => this.store.dispatch(currenciesActionsMap.update({ currencies: data })));
+        .subscribe((data: APIResponceCurrency[]) => {
+            const withoutUpdated = data.filter((cur) => cur.abbreviation !== updatedCurrency.abbreviation);
+            this.store.dispatch(currenciesActionsMap.update({ currencies: withoutUpdated }))
+        });
     };
 };

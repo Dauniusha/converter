@@ -14,7 +14,7 @@ const currenciesReducer = createReducer(
                     name: apiCurrency.name,
                 },
             }
-        }, {});
+        }, { ...state });
     })
 );
 
